@@ -25,7 +25,7 @@ class OrderService extends GetxService implements OrderServiceInterface {
       return Future.sync(() => OrderCreated(success: true, message: ""));
     } catch (e) {
       e.printError();
-      return Future.error(ErrorDescription("Erro na esperado"));
+      return Future.error(ErrorDescription("Erro não esperado"));
     }
   }
 }
