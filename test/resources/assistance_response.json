@@ -1,0 +1,32 @@
+[
+	{
+		"id": 1,
+		"name": "Troca de aparelho",
+		"description": "Troca de aparelho decodificador de sinal"
+	},
+	{
+		"id": 2,
+		"name": "Troca de cabo interno",
+		"description": "Troca de cabo interno"
+	},
+	{
+		"id": 3,
+		"name": "Troca de fiação interna",
+		"description": "Substituição de fiação interna da residência"
+	},
+	{
+		"id": 4,
+		"name": "Manutenção em fogão",
+		"description": "Reparo sem necessidade de compra de peças"
+	},
+	{
+		"id": 5,
+		"name": "Manutenção em geladeira",
+		"description": "Reparo sem necessidade de compra de peças"
+	},
+	{
+		"id": 6,
+		"name": "Manutenção em máquina de lavar",
+		"description": "Reparo sem necessidade de compra de peças"
+	}
+]
