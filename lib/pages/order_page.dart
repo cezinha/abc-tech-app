@@ -29,8 +29,9 @@ class OrderPage extends GetView<OrderController> {
                       child: Text(
                         'Preencha o fomulário de ordem de serviço',
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-              )))
+                        style: TextStyle(
+                            fontSize: 16.0, fontWeight: FontWeight.bold),
+                      )))
             ]),
             Obx(() {
               var enabled = controller.screenState.value == OrderState.creating;
@@ -59,7 +60,7 @@ class OrderPage extends GetView<OrderController> {
                       shape: CircleBorder(), color: Colors.blueAccent),
                   child: IconButton(
                       icon: const Icon(
-                        Icons.search,
+                        Icons.edit,
                         color: Colors.white,
                       ),
                       onPressed: () => controller.editServices()),
@@ -67,20 +68,31 @@ class OrderPage extends GetView<OrderController> {
                   height: 40)
             ]),
             Obx(
-              () => renderAssists(controller.selectedAssistances),
+              () {
+                if (controller.selectedAssistances.isEmpty) {
+                  return const Padding(
+                      padding: EdgeInsets.only(top: 25, bottom: 25),
+                      child: Text('Selecione um item na lista de serviços'));
+                }
+                return renderAssists(controller.selectedAssistances);
+              },
             ),
             Row(children: [
-              Expanded(
-                  child: ElevatedButton(onPressed: () {
-                FocusScope.of(context).unfocus();
-                controller.finishStartOrder();
-              }, child: Obx((() {
-                if (controller.screenState.value == OrderState.creating) {
-                  return const Text("Iniciar serviço");
-                } else {
-                  return const Text("Finalizar serviço");
+              Expanded(child: Obx(() {
+                if (controller.selectedAssistances.isEmpty) {
+                  return const ElevatedButton(onPressed: null, child: Text("Iniciar serviço"));
                 }
-              }))))
+                return ElevatedButton(onPressed: () {
+                  FocusScope.of(context).unfocus();
+                  controller.finishStartOrder();
+                }, child: Obx((() {
+                  if (controller.screenState.value == OrderState.creating) {
+                    return const Text("Iniciar serviço");
+                  } else {
+                    return const Text("Finalizar serviço");
+                  }
+                })));
+              }))
             ]),
           ],
         ),

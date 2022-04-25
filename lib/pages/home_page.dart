@@ -11,6 +11,7 @@ class HomePage extends GetView<AssistanceController> {
         shrinkWrap: true,
         itemCount: list.length,
         itemBuilder: (context, index) => ListTile(
+              leading: controller.isSelected(index) ? const Icon(Icons.remove_circle_outline) : const Icon(Icons.add_circle_outline),
               title: Text(list[index].name),
               selectedColor: Colors.blueAccent,
               selected: controller.isSelected(index),
