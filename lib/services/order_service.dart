@@ -19,6 +19,12 @@ class OrderService extends GetxService implements OrderServiceInterface {
     Response response = await _orderProvider.postOrder(order);
     try {
       if (response.hasError) {
+        if (response.statusCode == 500) {
+          return Future.error(ErrorDescription('Ocorreu um erro no serviço'));
+        }
+        if (response.statusCode == 404) {
+          return Future.error(ErrorDescription('Serviço não encontrado'));
+        }
         //TODO: tratar os possíveis cenários de erro da API
         return Future.error(ErrorDescription('Erro na API'));
       }
