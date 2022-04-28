@@ -15,7 +15,7 @@ class OrderPage extends GetView<OrderController> {
             ListTile(title: Text(assists[index].name)));
   }
 
-  Widget renderFromScreen(BuildContext context) {
+  Widget renderFormScreen(BuildContext context) {
     return SingleChildScrollView(
       child: Form(
         key: controller.formKey,
@@ -109,7 +109,7 @@ class OrderPage extends GetView<OrderController> {
         body: Container(
             constraints: const BoxConstraints.expand(),
             padding: const EdgeInsets.all(10.0),
-            child: controller.obx((state) => renderFromScreen(context),
+            child: controller.obx((state) => renderFormScreen(context),
                 onLoading: const Center(child: CircularProgressIndicator()),
                 onError: (error) => Text(error.toString()))));
   }
